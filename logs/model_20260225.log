@@ -1,0 +1,1 @@
+2026-02-25 10:07:06,073 - model - ERROR - [error]Failed to load checkpoint: [Errno 22] Invalid argument: 'E:\\git\\SignDETR\\pretrained\\E:\\git\\SignDETR\\model_test\\best_signdetr_model.pth.pt'[/error]
