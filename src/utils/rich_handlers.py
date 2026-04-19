@@ -190,7 +190,7 @@ class ModelHandler:
     def log_model_loading(self, model_path: str, success: bool = True):
         """Log model loading status."""
         if success:
-            self.console.print(f"[green]✅ Model loaded successfully from {model_path}[/green]")
+            self.console.print(f"[green] Model loaded successfully from {model_path}[/green]")
         else:
             self.console.print(f"[red]❌ Failed to load model from {model_path}[/red]")
     

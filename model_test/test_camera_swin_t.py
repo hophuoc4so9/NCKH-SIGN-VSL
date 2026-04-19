@@ -105,7 +105,7 @@ def main():
             new_state_dict[new_k] = v
         try:
             model.load_state_dict(new_state_dict, strict=False)
-            print("✅ Load model thành công!")
+            print(" Load model thành công!")
         except Exception as e2:
             print(f"❌ Lỗi load model (đã sửa key): {e2}")
             return
@@ -196,7 +196,7 @@ def main():
             print(f"📉 Threshold: {confidence_threshold:.2f}")
     cap.release()
     cv2.destroyAllWindows()
-    print("✅ Done!")
+    print(" Done!")
 
 if __name__ == "__main__":
     main()

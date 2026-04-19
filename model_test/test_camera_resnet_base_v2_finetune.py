@@ -117,7 +117,7 @@ def main():
                 print(f"   Loss: {checkpoint.get('loss'):.4f}")
         else:
             model.load_state_dict(checkpoint)
-        print("✅ Load model thành công!")
+        print(" Load model thành công!")
     except Exception as e:
         print(f"❌ Lỗi load model: {e}")
         print("   Hãy chắc chắn file model tồn tại và đúng format.")
@@ -240,7 +240,7 @@ def main():
     # Cleanup
     cap.release()
     cv2.destroyAllWindows()
-    print("✅ Done!")
+    print(" Done!")
 
 
 if __name__ == "__main__":

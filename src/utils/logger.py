@@ -121,7 +121,7 @@ class SignLanguageLogger:
 
     def success(self, message: str, **kwargs):
         """Log success message with rich formatting."""
-        prefix = self._log_prefix("✅", "OK")
+        prefix = self._log_prefix("", "OK")
         self.logger.info(f"[success]{prefix}{message}[/success]", **kwargs)
 
     def debug(self, message: str, **kwargs):
@@ -179,7 +179,7 @@ class SignLanguageLogger:
         """Print a status message with icon."""
         status_icons = {
             "info": "ℹ️",
-            "success": "✅",
+            "success": "",
             "warning": "⚠️",
             "error": "❌",
             "loading": "⏳",
@@ -299,7 +299,7 @@ class SignLanguageLogger:
 
     def capture_success(self, class_name: str, image_count: int, **kwargs):
         """Log successful image capture."""
-        self.console.print(f"[success]✅ Captured {class_name} image #{image_count}[/success]")
+        self.console.print(f"[success] Captured {class_name} image #{image_count}[/success]")
 
     def capture_error(self, class_name: str, error: str, **kwargs):
         """Log capture error with rich formatting."""
@@ -324,8 +324,8 @@ class SignLanguageLogger:
     def capture_session_complete(self, total_captured: int, total_classes: int):
         """Print capture session completion."""
         self.console.print(f"\n[bold green]🎉 Capture session completed![/bold green]")
-        self.console.print(f"[success]✅ Total images captured: {total_captured}[/success]")
-        self.console.print(f"[success]✅ Classes processed: {total_classes}[/success]")
+        self.console.print(f"[success] Total images captured: {total_captured}[/success]")
+        self.console.print(f"[success] Classes processed: {total_classes}[/success]")
 
     def create_capture_progress(self, total_images: int, class_name: str):
         """Create a progress bar specifically for image capture."""

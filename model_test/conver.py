@@ -43,4 +43,4 @@ optimized_traced_model = optimize_for_mobile(traced_script_module)
 
 # 5. Xuất xưởng!
 optimized_traced_model._save_for_lite_interpreter("signdetr_mobile.ptl")
-print("✅ Hoàn tất! Model đã được nén thành: signdetr_mobile.ptl")
+print(" Hoàn tất! Model đã được nén thành: signdetr_mobile.ptl")

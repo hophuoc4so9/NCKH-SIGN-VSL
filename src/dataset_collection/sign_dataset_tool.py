@@ -4,10 +4,13 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
-
+import random
+import string
 import cv2
 import mediapipe as mp
 import numpy as np
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 
 try:
     from utils.logger import get_logger
@@ -342,9 +345,21 @@ class SignDatasetCollector:
         blur_score = float(cv2.Laplacian(gray, cv2.CV_64F).var())
         return blur_score < self.blur_threshold, blur_score
 
-    def _next_filename_stem(self, mode: str, index: int) -> str:
+    def _next_filename_stem(self, mode: str, index: int, frame=None) -> str:
+        # timestamp + milliseconds
         ts = time.strftime("%Y%m%d_%H%M%S")
-        return f"{self.class_name}_{mode}_{ts}_{index:04d}"
+        ms = int((time.time() % 1) * 1000)
+
+        # random string
+        rand_str = ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
+
+        # hash (nếu có frame)
+        hash_part = ""
+        if frame is not None:
+            hash_part = hex(self._dhash(frame))[-6:]
+
+        return f"{self.class_name}_{mode}_{ts}{ms}_{index:04d}_{rand_str}_{hash_part}"
+
 
     def _dhash(self, frame, hash_size: int = 8) -> int:
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -540,7 +555,7 @@ class SignDatasetCollector:
                             for det in selected
                         ]
 
-                        stem = self._next_filename_stem(mode=mode, index=saved + 1)
+                        stem = self._next_filename_stem(mode=mode, index=saved + 1,frame=frame)
                         image_path = self.class_paths[mode]["images"] / f"{stem}.jpg"
                         label_path = self.class_paths[mode]["labels"] / f"{stem}.txt"
 
