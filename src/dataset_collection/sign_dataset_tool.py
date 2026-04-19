@@ -320,7 +320,6 @@ class SignDatasetCollector:
         if not self.cap.isOpened():
             raise RuntimeError(f"Cannot open camera id {self.camera_id}")
 
-        # Request the webcam to output 1280x720, then enforce this size by resize in run().
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, FIXED_FRAME_WIDTH)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, FIXED_FRAME_HEIGHT)
 
@@ -397,6 +396,7 @@ class SignDatasetCollector:
 
                 while saved < self.num_per_mode:
                     ok, frame = self.cap.read()
+                    frame = cv2.flip(frame, 1)
                     if not ok:
                         self.logger.capture_error(self.class_name, "Failed to read frame from camera")
                         continue
