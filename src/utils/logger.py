@@ -50,6 +50,8 @@ class SignLanguageLogger:
         self.console = Console(theme=custom_theme)
         self.name = name
         self.level = getattr(logging, level.upper())
+        self.console_encoding = (getattr(sys.stdout, "encoding", None) or "utf-8")
+        self.unicode_logs_supported = self._can_encode("📸")
 
         # Create logs directory
         self.logs_dir = Path("logs")
@@ -57,6 +59,16 @@ class SignLanguageLogger:
 
         # Setup logging
         self._setup_logging()
+
+    def _can_encode(self, text: str) -> bool:
+        try:
+            text.encode(self.console_encoding)
+            return True
+        except UnicodeEncodeError:
+            return False
+
+    def _log_prefix(self, emoji: str, fallback: str) -> str:
+        return f"{emoji} " if self.unicode_logs_supported else f"[{fallback}] "
 
     def _setup_logging(self):
         """Setup the logging configuration with rich formatting."""
@@ -109,7 +121,8 @@ class SignLanguageLogger:
 
     def success(self, message: str, **kwargs):
         """Log success message with rich formatting."""
-        self.logger.info(f"[success]✅ {message}[/success]", **kwargs)
+        prefix = self._log_prefix("✅", "OK")
+        self.logger.info(f"[success]{prefix}{message}[/success]", **kwargs)
 
     def debug(self, message: str, **kwargs):
         """Log debug message with rich formatting."""
@@ -117,27 +130,33 @@ class SignLanguageLogger:
 
     def data(self, message: str, **kwargs):
         """Log data-related message with rich formatting."""
-        self.logger.info(f"[data]📊 {message}[/data]", **kwargs)
+        prefix = self._log_prefix("📊", "DATA")
+        self.logger.info(f"[data]{prefix}{message}[/data]", **kwargs)
 
     def model(self, message: str, **kwargs):
         """Log model-related message with rich formatting."""
-        self.logger.info(f"[model]🤖 {message}[/model]", **kwargs)
+        prefix = self._log_prefix("🤖", "MODEL")
+        self.logger.info(f"[model]{prefix}{message}[/model]", **kwargs)
 
     def training(self, message: str, **kwargs):
         """Log training-related message with rich formatting."""
-        self.logger.info(f"[training]🏋️ {message}[/training]", **kwargs)
+        prefix = self._log_prefix("🏋️", "TRAIN")
+        self.logger.info(f"[training]{prefix}{message}[/training]", **kwargs)
 
     def test(self, message: str, **kwargs):
         """Log test-related message with rich formatting."""
-        self.logger.info(f"[test]🧪 {message}[/test]", **kwargs)
+        prefix = self._log_prefix("🧪", "TEST")
+        self.logger.info(f"[test]{prefix}{message}[/test]", **kwargs)
 
     def realtime(self, message: str, **kwargs):
         """Log realtime-related message with rich formatting."""
-        self.logger.info(f"[realtime]📹 {message}[/realtime]", **kwargs)
+        prefix = self._log_prefix("📹", "LIVE")
+        self.logger.info(f"[realtime]{prefix}{message}[/realtime]", **kwargs)
 
     def detection(self, message: str, **kwargs):
         """Log detection-related message with rich formatting."""
-        self.logger.info(f"[detection]🎯 {message}[/detection]", **kwargs)
+        prefix = self._log_prefix("🎯", "DETECT")
+        self.logger.info(f"[detection]{prefix}{message}[/detection]", **kwargs)
 
     def print_panel(self, title: str, content: str, style: str = "blue"):
         """Print content in a rich panel."""
@@ -275,7 +294,8 @@ class SignLanguageLogger:
 
     def capture(self, message: str, **kwargs):
         """Log capture-related message with rich formatting."""
-        self.logger.info(f"[realtime]📸 {message}[/realtime]", **kwargs)
+        prefix = self._log_prefix("📸", "CAPTURE")
+        self.logger.info(f"[realtime]{prefix}{message}[/realtime]", **kwargs)
 
     def capture_success(self, class_name: str, image_count: int, **kwargs):
         """Log successful image capture."""

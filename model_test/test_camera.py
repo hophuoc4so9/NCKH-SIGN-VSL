@@ -24,9 +24,9 @@ from albumentations.pytorch import ToTensorV2
 from model_resnet import DETR, CLASSES
 
 
-MODEL_PATH = "E:\\git\\SignDETR\\model_test\\best_signdetr_model.pth"
-# E:\git\SignDETR\model_test\checkpoint_epoch_140.pth
-# MODEL_PATH = "E:\\git\\SignDETR\\model_test\\checkpoint_epoch_140.pth"
+MODEL_PATH = "D:\\NCKH\\SIGN-VSL\\NCKH-SIGN-VSL\\model_test\\best_signdetr_model.pth"
+
+MODEL_PATH = "D:\\NCKH\\SIGN-VSL\\NCKH-SIGN-VSL\\model_test\\best_signdetr_model_base_v2.pth"
 
 CONFIDENCE_THRESHOLD = 0.8
 NUM_CLASSES = 22
@@ -126,7 +126,7 @@ def main():
     
     # ========== SETUP TRANSFORMS ==========
     transforms = A.Compose([
-        A.Resize(224, 224),
+        A.Resize(512, 512), 
         A.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
         ToTensorV2()
     ])
