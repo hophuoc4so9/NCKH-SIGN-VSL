@@ -34,7 +34,6 @@ VIETNAM SIGN LANGUAGE.v7i.yolov8/
 *.pth
 crawl-data/
 *.zip
-dataset/
 mobile/
 
 hand_landmarker.task
