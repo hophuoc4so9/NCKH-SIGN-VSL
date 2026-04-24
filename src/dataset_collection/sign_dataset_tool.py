@@ -1236,10 +1236,10 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
 
-    # MY_CLASSES = ['A', 'B', 'C', 'D', 'E', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-    MY_CLASSES = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-    MY_CLASSES = ['A', 'B', 'C', 'D', 'E', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y']
-    MY_CLASSES = [  'U', 'V', 'X', 'Y']
+    MY_CLASSES = ['A', 'B', 'C', 'D', 'E', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+    # MY_CLASSES = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+    # MY_CLASSES = ['A', 'B', 'C', 'D', 'E', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y']
+    # MY_CLASSES = [  'U', 'V', 'X', 'Y']
 
     if args.command == "capture":
         dataset_root = Path(args.dataset_root)
