@@ -40,3 +40,9 @@ hand_landmarker.task
 
 *.zip
 *.pth
+dataset_filtered
+dataset_old_v2_tuchup
+fixed_preview
+logs
+dataset_old
+dataset_final

@@ -1,0 +1,6 @@
+train: D:\NCKH\SIGN-VSL\NCKH-SIGN-VSL\dataset_final\train\images
+val: D:\NCKH\SIGN-VSL\NCKH-SIGN-VSL\dataset_final\valid\images
+test: D:\NCKH\SIGN-VSL\NCKH-SIGN-VSL\dataset_final\test\images
+
+nc: 22
+names: ['A', 'B', 'C', 'D', 'E', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y']
